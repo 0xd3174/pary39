@@ -22,7 +22,7 @@ jobs:
           persist-credentials: false
 
       - name: Cache Yarn dependencies
-        uses: actions/setup-node@v4 
+        uses: actions/setup-node@v4
         with:
           node-version: '20'
           cache: 'yarn'
@@ -44,4 +44,4 @@ jobs:
 
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v2
+        uses: actions/deploy-pages@v4
