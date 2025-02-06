@@ -3,7 +3,6 @@ import preact from '@preact/preset-vite';
 import { visualizer } from 'rollup-plugin-visualizer'
 
 export default defineConfig({
-  base: "/pary39r/",
   plugins: [preact()],
   build: {
     rollupOptions: {
