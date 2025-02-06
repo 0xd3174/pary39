@@ -1,0 +1,67 @@
+.group {
+  box-sizing: border-box;
+  padding: 8px;
+  margin: 1rem auto 0 auto;
+
+  cursor: pointer;
+}
+
+.group .group-name {
+  text-align: center;
+  color: var(--white);
+}
+
+.group .group-tip {
+  margin-top: 4px;
+  color: var(--gray-lighter)
+}
+
+/* Modal */
+
+.group-modal {
+  box-sizing: border-box;
+  width: calc(100% - 3rem);
+  max-width: 550px;
+  padding: 1.5rem;
+
+  border-radius: 13px;
+  border: 1px solid var(--gray-light);
+  background-color: var(--gray-dark);
+
+  overflow: visible;
+}
+
+.group-modal .group-modal-title {
+  color: var(--gray-lighter);
+  font-size: 1.5rem;
+}
+
+.group-modal .group-modal-close {
+  font-size: 1rem;
+  box-sizing: border-box;
+  padding: 0.5rem;
+  vertical-align: middle;
+  cursor: pointer;
+  color: var(--gray-lighter);
+}
+
+.group-modal .group-modal-close:hover {
+  border-radius: 999px;
+  background-color: rgb(255, 255, 255, 0.05);
+}
+
+.group-modal .group-modal-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.group-modal p,
+.group-modal h1,
+.group-modal li {
+  color: var(--text);
+}
+
+.group-modal .dropdown {
+  margin-top: 1rem;
+}

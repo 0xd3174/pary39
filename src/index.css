@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+:root {
+  --cyan-dark: #45A29E;
+  --cyan-light: #66FCF1;
+  --gray-dark: #0B0C10;
+  --gray-light: #1F2833;
+  --gray-lighter: #C5C6C7;
+  --gray-lighter-filter: invert(100%) sepia(3%) saturate(731%) hue-rotate(175deg) brightness(85%) contrast(81%);
+  --gray-off: #90969b;
+  --white: #FFFFFF;
+}
+
+* {
+  outline: none;
+}
+
+body {
+  margin: 0;
+
+  color: var(--text);
+  background-color: var(--gray-dark);
+  font-family: Inter, sans-serif;
+  font-weight: 600;
+}
+
+p,
+h1,
+li,
+ul,
+summary {
+  margin: 0;
+}
+
+/* Disables scrolling on the page if modal is opened */
+body:has(dialog[open]) {
+  overflow: hidden;
+}
+
+dialog::backdrop {
+  backdrop-filter: blur(2px);
+}
