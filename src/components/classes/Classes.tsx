@@ -144,11 +144,28 @@ const Class = ({ props }: { props: IClass }) => {
   const defineRow = (prop: string) => {
     if (subgroup === undefined) return '';
 
-    if (prop === 'place') {
+    if (
+      prop === 'place' &&
+      (props.subjects[subgroup][prop] || props.subjects[0][prop]).startsWith('http')
+    ) {
       if (props.subjects[subgroup]) {
-        return <a className="text-cyan-600 underline" href={props.subjects[subgroup][prop]}>Ссылка</a>;
+        return (
+          <a
+            className="text-cyan-600 underline"
+            href={props.subjects[subgroup][prop]}
+          >
+            Ссылка
+          </a>
+        );
       }
-      return <a className="text-cyan-600 underline" href={props.subjects[0][prop] || ''}>Ссылка</a>;
+      return (
+        <a
+          className="text-cyan-600 underline"
+          href={props.subjects[0][prop] || ''}
+        >
+          Ссылка
+        </a>
+      );
     }
 
     if (props.subjects[subgroup]) {
