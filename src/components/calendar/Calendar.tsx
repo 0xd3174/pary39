@@ -36,7 +36,7 @@ export function Calendar() {
         <img className="w-4" src={calendarIcon}></img>
       </div>
 
-      {isLocalModalOpen && <CalendarModal dialogRef={ref} />}
+      <CalendarModal dialogRef={ref} />
     </>
   );
 }
@@ -271,7 +271,7 @@ function CalendarModal({ dialogRef }: CalendarModalProps) {
   return (
     <>
       <dialog
-        className="min-w-[calc(100%-3rem)] lg:min-w-[450px] p-4 rounded-xl border-1 border-solid border-outline bg-[var(--color-bg)] overflow-visible m-auto focus:outline-none"
+        className="min-w-[calc(100%-3rem)] lg:min-w-[450px] p-4 rounded-xl border-1 border-solid border-outline bg-[var(--color-bg)] overflow-visible m-auto focus:outline-none animate-[modal_150ms_linear]"
         ref={dialogRef}
       >
         <div className="flex flex-row justify-between pb-2">

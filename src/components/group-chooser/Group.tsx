@@ -96,13 +96,20 @@ function GroupChooserModal({ dialogRef }: GroupChooserModalProps) {
   const closeDropdown = useDropdownStore((state) => state.close);
   const [groups, setGroups] = useState<string[]>([]);
 
-  // Prevent closing the modal with the Escape key
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
         e.preventDefault();
       }
     };
+
+    if (dialogRef.current) {
+      dialogRef.current.addEventListener('click', ({ target }) => {
+        if ((target as HTMLDialogElement).nodeName === 'DIALOG') {
+          closeModal();
+        }
+      });
+    }
 
     document.addEventListener('keydown', handleKeyDown);
     return () => document.removeEventListener('keydown', handleKeyDown);
@@ -117,8 +124,7 @@ function GroupChooserModal({ dialogRef }: GroupChooserModalProps) {
     fetchGroups();
   }, []);
 
-  // Handle click outside the modal
-  const handleClickOutsideModal = (e: TargetedEvent<HTMLDialogElement>) => {
+  const handleClickOutsideDropdowns = (e: TargetedEvent<HTMLDialogElement>) => {
     if (!(e.target instanceof HTMLParagraphElement)) {
       closeDropdown();
     }
@@ -143,19 +149,11 @@ function GroupChooserModal({ dialogRef }: GroupChooserModalProps) {
 
   return (
     <dialog
-      className="w-[calc(100%-3rem)] max-w-[550px] p-6 rounded-xl border-1 border-solid bg-[var(--color-bg)] border-outline overflow-visible m-auto focus:outline"
+      className="w-[calc(100%-3rem)] max-w-[550px] p-6 rounded-xl border-1 border-solid bg-[var(--color-bg)] border-outline overflow-visible m-auto focus:outline animate-[modal_150ms_linear]"
       ref={dialogRef}
-      onClick={handleClickOutsideModal}
+      onClick={handleClickOutsideDropdowns}
     >
-      <div className="flex justify-between">
-        <h1 className="text-white text-2xl mb-4">Выбор группы</h1>
-        <span
-          className="p-2 align-middle cursor-pointer text-white hover:border-full hover:opacity-50"
-          onClick={closeModal}
-        >
-          X
-        </span>
-      </div>
+      <h1 className="text-white text-2xl mb-4">Выбор группы</h1>
 
       <Dropdown
         title="Уровень образования"
