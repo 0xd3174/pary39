@@ -143,15 +143,28 @@ function extractSchedule(
             _type = ClassType.Error;
         }
 
-        const subgroup = parseInt(
-          subject[4].innerText.match(/\d+/)?.[0] || '0'
-        );
+        let place;
+        let subgroup;
+
+        if (subject.length > 5) {
+          place = (subject[4].children[0] as HTMLAnchorElement).href;
+
+          subgroup = parseInt(
+            subject[5].innerText.match(/\d+/)?.[0] || '0'
+          );
+        } else {
+          place = subject[3].innerText;
+
+          subgroup = parseInt(
+            subject[4].innerText.match(/\d+/)?.[0] || '0'
+          );
+        }
 
         subjects.push({
           type: _type,
           item: subject[1].innerText,
           teacher: subject[2].innerText,
-          place: subject[3].innerText,
+          place,
           subgroup,
         });
       }

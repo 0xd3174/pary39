@@ -8,7 +8,6 @@ import { useGroupStore } from '../../stores/group';
 import { useClassesStore } from '../../stores/classes';
 import { useDateStore } from '../../stores/date';
 import { dayNumberToString, isDateInCurrentWeek } from '../../utils/date';
-import arrowIcon from '/src/svg/arrow.svg';
 import { Arrow } from '../../shared/arrow/Arrow';
 
 export function Classes() {
@@ -144,6 +143,13 @@ const Class = ({ props }: { props: IClass }) => {
 
   const defineRow = (prop: string) => {
     if (subgroup === undefined) return '';
+
+    if (prop === 'place') {
+      if (props.subjects[subgroup]) {
+        return <a className="text-cyan-600 underline" href={props.subjects[subgroup][prop]}>Ссылка</a>;
+      }
+      return <a className="text-cyan-600 underline" href={props.subjects[0][prop] || ''}>Ссылка</a>;
+    }
 
     if (props.subjects[subgroup]) {
       // @ts-expect-error

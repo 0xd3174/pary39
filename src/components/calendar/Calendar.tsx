@@ -2,7 +2,6 @@ import { MutableRef, useEffect, useMemo, useRef, useState } from 'preact/hooks';
 import { useDateStore } from '../../stores/date';
 import { useModalStore } from '../../stores/modal';
 import calendarIcon from '/src/svg/calendar.svg';
-import arrowIcon from '/src/svg/arrow.svg';
 import { generateComponentId } from '../../utils/generate-id';
 import { getMonthAsMatrix, monthNumberToString } from '../../utils/date';
 import './calendar.css';
