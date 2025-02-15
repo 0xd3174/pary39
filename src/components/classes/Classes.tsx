@@ -32,6 +32,7 @@ export function Classes() {
       }
 
       for (const [key, value] of Object.entries(classes)) {
+        console.log(key, value)
         classesState.add(key, value);
       }
     };
@@ -57,10 +58,10 @@ export function Classes() {
     const checkDirection = () => {
       const deltaX = touchstartX - touchendX;
 
-      if (deltaX > 100) {
+      if (deltaX > 70) {
         // Swipe left
         updateDate(1);
-      } else if (deltaX < -100) {
+      } else if (deltaX < -70) {
         // Swipe right
         updateDate(-1);
       }
@@ -191,7 +192,7 @@ const Class = ({ props }: { props: IClass }) => {
           (e === subgroup.toString() ? ' bg-outline rounded-xl' : '')
         }
       >
-        {subgroups.length > 1 ? `Подгруппа ${+e + 1}` : 'Общая'}
+        {subjects[subgroup].subgroup != -1 ? `Подгруппа ${+e + 1}` : 'Общая'}
       </p>
     ));
   };

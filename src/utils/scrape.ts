@@ -149,15 +149,11 @@ function extractSchedule(
         if (subject.length > 5) {
           place = (subject[4].children[0] as HTMLAnchorElement).href;
 
-          subgroup = parseInt(
-            subject[5].innerText.match(/\d+/)?.[0] || '0'
-          );
+          subgroup = parseInt(subject[5].innerText.match(/\d+/)?.[0] || '-1');
         } else {
           place = subject[3].innerText;
 
-          subgroup = parseInt(
-            subject[4].innerText.match(/\d+/)?.[0] || '0'
-          );
+          subgroup = parseInt(subject[4].innerText.match(/\d+/)?.[0] || '-1');
         }
 
         subjects.push({
