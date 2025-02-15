@@ -146,7 +146,10 @@ const Class = ({ props }: { props: IClass }) => {
 
     if (
       prop === 'place' &&
-      (props.subjects[subgroup][prop] || props.subjects[0][prop]).startsWith('http')
+      (
+        (props.subjects[subgroup] && props.subjects[subgroup][prop]) ||
+        props.subjects[0][prop]
+      ).startsWith('http')
     ) {
       if (props.subjects[subgroup]) {
         return (
@@ -188,7 +191,7 @@ const Class = ({ props }: { props: IClass }) => {
           (e === subgroup.toString() ? ' bg-outline rounded-xl' : '')
         }
       >
-        Подгруппа {+e + 1}
+        {subgroups.length > 1 ? `Подгруппа ${+e + 1}` : 'Общая'}
       </p>
     ));
   };
