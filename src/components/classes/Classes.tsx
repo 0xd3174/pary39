@@ -32,7 +32,6 @@ export function Classes() {
       }
 
       for (const [key, value] of Object.entries(classes)) {
-        console.log(key, value)
         classesState.add(key, value);
       }
     };
@@ -192,7 +191,7 @@ const Class = ({ props }: { props: IClass }) => {
           (e === subgroup.toString() ? ' bg-outline rounded-xl' : '')
         }
       >
-        {subjects[subgroup].subgroup != -1 ? `Подгруппа ${+e + 1}` : 'Общая'}
+        {subjects[parseInt(e)].subgroup != -1 ? `Подгруппа ${+e + 1}` : 'Общая'}
       </p>
     ));
   };
