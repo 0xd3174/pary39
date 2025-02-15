@@ -1,6 +1,7 @@
-import { defineConfig, Plugin } from 'vite';
+import { defineConfig } from 'vite';
 import preact from '@preact/preset-vite';
-import { visualizer } from 'rollup-plugin-visualizer'
+import { visualizer } from 'rollup-plugin-visualizer';
+import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
   plugins: [preact()],
@@ -10,7 +11,8 @@ export default defineConfig({
         visualizer({
           gzipSize: true,
           brotliSize: true,
-        }) as Plugin,
+        }),
+        tailwindcss(),
       ],
     },
     outDir: 'dist',
