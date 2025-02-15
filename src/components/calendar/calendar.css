@@ -1,7 +1,40 @@
-.calendar-item {
-  text-align: center;
+.calendar-day {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding: 1rem;
-  width: calc(100% / 7);
-  border-radius: 999px;
-  color: var(--color-gray-300);
+  width: 3rem;
+  height: 3rem;
+  border-radius: 8px;
+  color: var(--color-white);
+}
+
+.calendar-day-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 8px;
+  color: var(--color-white);
+}
+
+.calendar-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  width: 6rem;
+  height: 3rem;
+  border-radius: 8px;
+  color: var(--color-white);
+}
+
+.calendar-item:hover {
+  background-color: #27272a80;
+}
+
+.calendar-day:hover {
+  background-color: #27272a80;
 }

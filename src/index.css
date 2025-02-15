@@ -1,19 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
 @import "tailwindcss";
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
-
 :root {
-  --gray-lighter-filter: invert(100%) sepia(3%) saturate(731%) hue-rotate(175deg) brightness(85%) contrast(81%);
+  --arrow-filter: invert(100%) sepia(3%) saturate(731%) hue-rotate(175deg) brightness(85%) contrast(81%);
+
+  --color-bg: #09090b;
+}
+
+@theme {
+  --color-outline: #27272a;
+  --color-white: #fafafa;
 }
 
 body {
   margin: 0;
 
-  background-color: var(--color-gray-950);
+  background-color: var(--color-bg);
   
   font-family: Inter, sans-serif;
   font-weight: 600;
@@ -30,23 +37,11 @@ body {
   flex-direction: column;
 }
 
-/* Components */
-
-@layer components {
-  .arrow-right {
-
-  }
-
-  .arrow-left {
-    
-  }
-}
-
 /* Disables scrolling on the page if modal is opened */
 body:has(dialog[open]) {
   overflow: hidden;
 }
 
 dialog::backdrop {
-  backdrop-filter: blur(2px);
+  backdrop-filter: brightness(0.5) blur(1px);
 }

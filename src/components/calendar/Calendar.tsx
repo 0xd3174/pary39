@@ -30,10 +30,10 @@ export function Calendar() {
   return (
     <>
       <div
-        class="calendar mt-1 w-[75%] max-w-[330px] p-4 bg-gray-800 border-2 border-solid border-gray-600 rounded-xl hover:border-cyan-700 flex justify-between font-normal"
+        class="calendar mt-1 w-[75%] max-w-[330px] p-4 border-2 border-solid border-outline rounded-xl hover:bg-outline flex justify-between font-normal"
         onClick={() => modalState.open(modalId)}
       >
-        <p class="text-gray-300 font-semibold">{dateState.dateString()}</p>
+        <p class="text-white font-semibold">{dateState.dateString()}</p>
         <img className="w-4" src={calendarIcon}></img>
       </div>
 
@@ -93,7 +93,7 @@ function CalendarModal({ dialogRef }: CalendarModalProps) {
       case IChoose.MONTH:
         r = (
           <p
-            className="hover:text-cyan-400 transition-colors"
+            className="cursor-pointer hover:text-cyan-600 transition-colors"
             onClick={() => setChoose(IChoose.YEAR)}
           >
             {localDate.getFullYear()}
@@ -109,13 +109,13 @@ function CalendarModal({ dialogRef }: CalendarModalProps) {
         r = (
           <>
             <p
-              className="hover:text-cyan-400 transition-colors"
+              className="cursor-pointer hover:text-cyan-600 transition-colors"
               onClick={() => setChoose(IChoose.MONTH)}
             >
               {monthNumberToString(localDate.getMonth())}
             </p>
             <p
-              className="ml-1 hover:text-cyan-400 transition-colors"
+              className="cursor-pointer ml-2 hover:text-cyan-600 transition-colors"
               onClick={() => setChoose(IChoose.YEAR)}
             >
               {localDate.getFullYear()}
@@ -132,9 +132,17 @@ function CalendarModal({ dialogRef }: CalendarModalProps) {
 
     return (
       <>
-        <Arrow className="w-8 p-1.5" orientation='left' callback={() => cb(-1)} />
+        <Arrow
+          className="w-8 p-1.5"
+          orientation="left"
+          callback={() => cb(-1)}
+        />
         <div className="flex text-white">{r}</div>
-        <Arrow className="w-8 p-1.5" orientation='right' callback={() => cb(1)} />
+        <Arrow
+          className="w-8 p-1.5"
+          orientation="right"
+          callback={() => cb(1)}
+        />
       </>
     );
   };
@@ -172,7 +180,7 @@ function CalendarModal({ dialogRef }: CalendarModalProps) {
         <div className="flex flex-row justify-between">
           {row.map((e) => (
             <p
-              className="text-center p-4 w-[calc(100%/7)] text-gray-600 transition-colors duration-200 border-full"
+              className="calendar-item"
               onClick={() => {
                 const tDate = new Date(localDate);
                 tDate.setFullYear(e);
@@ -201,7 +209,7 @@ function CalendarModal({ dialogRef }: CalendarModalProps) {
         <div className="first:mt-0.5 flex flex-row justify-between">
           {row.map((e) => (
             <p
-              className="text-center p-1 w-[calc(100%/7)] text-gray-600 transition-colors duration-200 border-full"
+              className="calendar-item"
               onClick={() => {
                 const tDate = new Date(localDate);
                 tDate.setMonth(e);
@@ -219,42 +227,55 @@ function CalendarModal({ dialogRef }: CalendarModalProps) {
 
   const renderDays = () => {
     const matrix = getMonthAsMatrix(localDate);
+    const daysHeader = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'];
 
-    return matrix.map((row) => {
-      return (
-        <div className="first:mt-0.5 flex flex-row justify-between">
-          {row.map((e) => (
-            <p
-              className={
-                'calendar-item ' + (e > 0 ? 'cursor-pointer' : 'opacity-30')
-              }
-              onClick={
-                e > 0
-                  ? () => {
-                      const tDate = new Date(localDate);
-                      tDate.setDate(e);
-                      setLocalDate(tDate);
-                      dateState.set(tDate);
-                      closeModal();
-                    }
-                  : undefined
-              }
-            >
-              {Math.abs(e)}
-            </p>
-          ))}
-        </div>
-      );
-    });
+    return (
+      <>
+        {
+          <div className="mt-0.5 flex flex-row justify-between">
+            {daysHeader.map((e) => (
+              <p className="calendar-day-header cursor-default opacity-30">{e}</p>
+            ))}
+          </div>
+        }
+        {matrix.map((row) => {
+          return (
+            <div className="flex flex-row justify-between">
+              {row.map((e) => (
+                <p
+                  className={
+                    'calendar-day ' +
+                    (e > 0 ? 'cursor-pointer' : 'opacity-30 cursor-default')
+                  }
+                  onClick={
+                    e > 0
+                      ? () => {
+                          const tDate = new Date(localDate);
+                          tDate.setDate(e);
+                          setLocalDate(tDate);
+                          dateState.set(tDate);
+                          closeModal();
+                        }
+                      : undefined
+                  }
+                >
+                  {Math.abs(e)}
+                </p>
+              ))}
+            </div>
+          );
+        })}
+      </>
+    );
   };
 
   return (
     <>
       <dialog
-        className="w-[calc(100%-3rem)] max-w-[650px] p-4 rounded-xl border-1 border-solid border-gray-600 bg-gray-800 overflow-visible m-auto focus:outline-none"
+        className="min-w-[calc(100%-3rem)] lg:min-w-[450px] p-4 rounded-xl border-1 border-solid border-outline bg-[var(--color-bg)] overflow-visible m-auto focus:outline-none"
         ref={dialogRef}
       >
-        <div className="flex flex-row justify-between border-b-1 border-solid border-gray-600 pb-2">
+        <div className="flex flex-row justify-between pb-2">
           {renderHeader()}
         </div>
         <div className="flex flex-col mt-2">{renderModal()}</div>

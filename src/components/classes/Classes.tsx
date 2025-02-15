@@ -136,8 +136,10 @@ const Class = ({ props }: { props: IClass }) => {
     setSubgroup(Object.keys(props.subjects).length > 1 ? 1 : 0);
   }, [props.subjects]);
 
-  const handleClick = () => {
-    setSubgroup((prevSubgroup) => (prevSubgroup === 1 ? 0 : 1));
+  const handleClick = (subjects: IClass['subjects']) => {
+    if (Object.keys(subjects).length > 1) {
+      setSubgroup((prevSubgroup) => (prevSubgroup === 1 ? 0 : 1));
+    }
   };
 
   const defineRow = (prop: string) => {
@@ -160,7 +162,7 @@ const Class = ({ props }: { props: IClass }) => {
       <p
         className={
           'pt-1 pb-1 pl-2 pr-2' +
-          (e === subgroup.toString() ? ' bg-cyan-700 rounded-xl' : '')
+          (e === subgroup.toString() ? ' bg-outline rounded-xl' : '')
         }
       >
         Подгруппа {+e + 1}
@@ -170,19 +172,20 @@ const Class = ({ props }: { props: IClass }) => {
 
   return (
     <>
-      <div className="mt-4 p-4 rounded-xl border-1 border-solid border-gray-600">
-        <div className="flex justify-between">
+      <div className="mt-4 p-4 rounded-xl border-1 border-solid border border-outline">
+        <div className="mb-2 flex justify-between">
           <p className="text-white">
-            {props.count}, <span className="text-gray-400">{props.time}</span>
+            {props.count.trim()},{' '}
+            <span className="text-zinc-500">{props.time}</span>
           </p>
-          <p className="text-gray-400">{defineRow('type')}</p>
+          <p className="text-zinc-500">{defineRow('type')}</p>
         </div>
-        <p className="text-2xl text-white">{defineRow('item')}</p>
-        <p className="text-gray-400">{defineRow('teacher')}</p>
-        <p className="text-gray-400">{defineRow('place')}</p>
+        <p className="mb-2 text-2xl text-white">{defineRow('item')}</p>
+        <p className="mb-2 text-zinc-500">{defineRow('teacher')}</p>
+        <p className="mb-3 text-zinc-500">{defineRow('place')}</p>
         <button
-          onClick={handleClick}
-          className="p-0 text-gray-200 bg-gray-600 font-semibold flex w-fit mt-1 rounded-xl border-none cursor-pointer"
+          onClick={() => handleClick(props.subjects)}
+          className="p-0 text-gray-200 border-1 border-solid border-outline font-semibold flex w-fit mt-1 rounded-xl cursor-pointer"
         >
           {renderSubgroups(props.subjects)}
         </button>

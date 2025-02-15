@@ -1,13 +1,12 @@
 import { MutableRef, useEffect, useMemo, useRef, useState } from 'preact/hooks';
-import './group.css';
 import { useModalStore } from '../../stores/modal';
 import { useGroupChooserStore, useGroupStore } from '../../stores/group';
-import { Dropdown } from '../dropdown/Dropdown';
+import { Dropdown } from '../../shared/dropdown/Dropdown';
 import { generateComponentId } from '../../utils/generate-id';
 import { useDropdownStore } from '../../stores/dropdown';
 import { TargetedEvent } from 'preact/compat';
 import { getGroups } from '../../utils/get-groups';
-import { DropdownSearch } from '../dropdown/DropdownSearch';
+import { DropdownSearch } from '../../shared/dropdown/DropdownSearch';
 
 const EDUCATION_LEVELS = [
   'СПО',
@@ -65,9 +64,16 @@ export function GroupChooser() {
 
   return (
     <>
-      <div onClick={() => modalState.open(modalId)} className="p-8 cursor-pointer mt-4 mr-auto ml-auto">
-        <p className="text-center text-white">{groupState.group || 'Группа не выбрана'}</p>
-        <p className="text-center text-gray-400 mt-1">Нажмите, чтобы выбрать группу</p>
+      <div
+        onClick={() => modalState.open(modalId)}
+        className="p-4 cursor-pointer mt-4 mr-auto ml-auto"
+      >
+        <p className="text-center text-white text-lg font-bold">
+          {groupState.group || 'Группа не выбрана'}
+        </p>
+        <p className="text-center text-zinc-500 mt-1">
+          Нажмите, чтобы выбрать группу
+        </p>
       </div>
 
       {isLocalModalOpen && <GroupChooserModal dialogRef={ref} />}
@@ -136,10 +142,17 @@ function GroupChooserModal({ dialogRef }: GroupChooserModalProps) {
   };
 
   return (
-    <dialog className="group-modal" ref={dialogRef} onClick={handleClickOutsideModal}>
-      <div className="group-modal-header">
-        <h1 className="group-modal-title">Выбор группы</h1>
-        <span className="group-modal-close" onClick={closeModal}>
+    <dialog
+      className="w-[calc(100%-3rem)] max-w-[550px] p-6 rounded-xl border-1 border-solid bg-[var(--color-bg)] border-outline overflow-visible m-auto focus:outline"
+      ref={dialogRef}
+      onClick={handleClickOutsideModal}
+    >
+      <div className="flex justify-between">
+        <h1 className="text-white text-2xl mb-4">Выбор группы</h1>
+        <span
+          className="p-2 align-middle cursor-pointer text-white hover:border-full hover:opacity-50"
+          onClick={closeModal}
+        >
           X
         </span>
       </div>
@@ -151,6 +164,7 @@ function GroupChooserModal({ dialogRef }: GroupChooserModalProps) {
       />
 
       <Dropdown
+        className="mt-4"
         title="Курс"
         items={level ? COURSES_BY_LEVEL[level] : []}
         disabled={!level}
@@ -158,6 +172,7 @@ function GroupChooserModal({ dialogRef }: GroupChooserModalProps) {
       />
 
       <DropdownSearch
+        className="mt-4"
         title="Направление"
         items={course ? renderGroups() : []}
         disabled={!course}

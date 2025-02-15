@@ -4,13 +4,20 @@ import { generateComponentId } from '../../utils/generate-id';
 import './dropdown.css';
 
 interface DropdownProps {
+  className?: string;
   title: string;
   items: string[];
   disabled?: boolean;
   handler: (item: string) => void;
 }
 
-export function Dropdown({ title, items, disabled, handler }: DropdownProps) {
+export function Dropdown({
+  className,
+  title,
+  items,
+  disabled,
+  handler,
+}: DropdownProps) {
   const id = useMemo(() => generateComponentId('d'), []);
   const [selectedTitle, setSelectedTitle] = useState<Maybe<string>>(null);
 
@@ -38,19 +45,26 @@ export function Dropdown({ title, items, disabled, handler }: DropdownProps) {
   const renderItems = () => {
     if (disabled) {
       return (
-        <ul ref={listRef} className={`dropdown-list ${isOpen ? 'opened' : 'closed'}`}>
-          <li className="dropdown-item disabled">Ничего не найдено</li>
+        <ul
+          ref={listRef}
+          className={`absolute bg-[var(--color-bg)] border-solid border-outline rounded-md overflow-auto w-[calc(100%-3rem)] ${
+            isOpen ? 'border-1 max-h-32 z-50' : 'border-0 max-h-0 z-0'
+          }`}
+        >
+          <li className="dropdown-item">Ничего не найдено</li>
         </ul>
       );
     }
 
     return (
-      <ul ref={listRef} className={`dropdown-list ${isOpen ? 'opened' : 'closed'}`}>
+      <ul
+        ref={listRef}
+        className={`absolute bg-[var(--color-bg)] border-solid border-outline rounded-md overflow-auto w-[calc(100%-3rem)] ${
+          isOpen ? 'border-1 max-h-32 z-50' : 'border-0 max-h-0 z-0'
+        }`}
+      >
         {items.map((item) => (
-          <li
-            className="dropdown-item"
-            onClick={() => handleItemClick(item)}
-          >
+          <li className="dropdown-item" onClick={() => handleItemClick(item)}>
             {item}
           </li>
         ))}
@@ -67,8 +81,11 @@ export function Dropdown({ title, items, disabled, handler }: DropdownProps) {
   };
 
   return (
-    <div className="dropdown">
-      <p className={`dropdown-title ${selectedTitle ? 'dropdown-title-selected' : ''}`} onClick={toggleDropdown}>
+    <div className="clear-both">
+      <p
+        className={`${className} mb-px pt-2 pb-2 pl-3 pr-3 border-1 border-solid border-outline rounded-md cursor-pointer transition-colors hover:bg-outline text-white`}
+        onClick={toggleDropdown}
+      >
         {selectedTitle || title}
       </p>
       {renderItems()}

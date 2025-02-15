@@ -4,6 +4,7 @@ import { generateComponentId } from '../../utils/generate-id';
 import './dropdown.css';
 
 interface DropdownSearchProps {
+  className?: string;
   title: string;
   items: string[];
   disabled?: boolean;
@@ -11,6 +12,7 @@ interface DropdownSearchProps {
 }
 
 export function DropdownSearch({
+  className,
   title,
   items,
   disabled,
@@ -26,7 +28,6 @@ export function DropdownSearch({
   const inputRef = useRef<HTMLInputElement>(null);
 
   const [searchBar, setSearchBar] = useState<string>('');
-
 
   useEffect(() => {
     if (!listRef.current) return;
@@ -51,7 +52,9 @@ export function DropdownSearch({
       return (
         <ul
           ref={listRef}
-          className={`dropdown-list ${isOpen ? 'opened' : 'closed'}`}
+          className={`absolute bg-[var(--color-bg)] border-solid border-outline rounded-md overflow-auto w-[calc(100%-3rem)] ${
+            isOpen ? 'border-1 max-h-32 z-50' : 'border-0 max-h-0 z-0'
+          }`}
         >
           <li className="dropdown-item disabled">Ничего не найдено</li>
         </ul>
@@ -59,7 +62,12 @@ export function DropdownSearch({
     }
 
     return (
-      <ul ref={listRef} className={`dropdown-list ${isOpen ? 'opened' : 'closed'}`}>
+      <ul
+        ref={listRef}
+        className={`absolute bg-[var(--color-bg)] border-solid border-outline rounded-md overflow-auto w-[calc(100%-3rem)] ${
+          isOpen ? 'border-1 max-h-32 z-50' : 'border-0 max-h-0 z-0'
+        }`}
+      >
         {items.map((item) => {
           if (!searchBar || item.toLowerCase().includes(searchBar)) {
             return (
@@ -89,15 +97,18 @@ export function DropdownSearch({
       {isOpen && !disabled ? (
         <input
           ref={inputRef}
-          className="dropdown-title dropdown-search-title"
+          className={`${className} mb-px pt-2 pb-2 pl-3 pr-3 border-1 border-solid border-outline rounded-md cursor-pointer transition-colors hover:bg-outline text-white block w-full focus:outline-none`}
           onInput={(i) => setSearchBar(i.currentTarget.value.toLowerCase())}
           onClick={toggleDropdown}
           type="text"
         />
       ) : (
-        <p className={`dropdown-title ${selectedTitle ? 'dropdown-title-selected' : ''}`} onClick={toggleDropdown}>
-        {selectedTitle || title}
-      </p>
+        <p
+          className={`${className} mb-px pt-2 pb-2 pl-3 pr-3 border-1 border-solid border-outline rounded-md cursor-pointer transition-colors hover:bg-outline text-white`}
+          onClick={toggleDropdown}
+        >
+          {selectedTitle || title}
+        </p>
       )}
       {renderItems()}
     </div>
