@@ -1,11 +1,12 @@
 import { MutableRef, useEffect, useMemo, useRef, useState } from 'preact/hooks';
 import { useDateStore } from '../../stores/date';
 import { useModalStore } from '../../stores/modal';
-import './calendar.css';
 import calendarIcon from '/src/svg/calendar.svg';
 import arrowIcon from '/src/svg/arrow.svg';
 import { generateComponentId } from '../../utils/generate-id';
 import { getMonthAsMatrix, monthNumberToString } from '../../utils/date';
+import './calendar.css';
+import { Arrow } from '../../shared/arrow/Arrow';
 
 export function Calendar() {
   const dateState = useDateStore((state) => state);
@@ -28,9 +29,12 @@ export function Calendar() {
 
   return (
     <>
-      <div class="calendar" onClick={() => modalState.open(modalId)}>
-        <p class="calendar-title">{dateState.dateString()}</p>
-        <img src={calendarIcon}></img>
+      <div
+        class="calendar mt-1 w-[75%] max-w-[330px] p-4 bg-gray-800 border-2 border-solid border-gray-600 rounded-xl hover:border-cyan-700 flex justify-between font-normal"
+        onClick={() => modalState.open(modalId)}
+      >
+        <p class="text-gray-300 font-semibold">{dateState.dateString()}</p>
+        <img className="w-4" src={calendarIcon}></img>
       </div>
 
       {isLocalModalOpen && <CalendarModal dialogRef={ref} />}
@@ -88,7 +92,10 @@ function CalendarModal({ dialogRef }: CalendarModalProps) {
         break;
       case IChoose.MONTH:
         r = (
-          <p onClick={() => setChoose(IChoose.YEAR)}>
+          <p
+            className="hover:text-cyan-400 transition-colors"
+            onClick={() => setChoose(IChoose.YEAR)}
+          >
             {localDate.getFullYear()}
           </p>
         );
@@ -101,10 +108,16 @@ function CalendarModal({ dialogRef }: CalendarModalProps) {
       case IChoose.DAY:
         r = (
           <>
-            <p onClick={() => setChoose(IChoose.MONTH)}>
+            <p
+              className="hover:text-cyan-400 transition-colors"
+              onClick={() => setChoose(IChoose.MONTH)}
+            >
               {monthNumberToString(localDate.getMonth())}
             </p>
-            <p onClick={() => setChoose(IChoose.YEAR)}>
+            <p
+              className="ml-1 hover:text-cyan-400 transition-colors"
+              onClick={() => setChoose(IChoose.YEAR)}
+            >
               {localDate.getFullYear()}
             </p>
           </>
@@ -119,9 +132,9 @@ function CalendarModal({ dialogRef }: CalendarModalProps) {
 
     return (
       <>
-        <img src={arrowIcon} onClick={() => cb(-1)}></img>
-        <div className="cm-header-text">{r}</div>
-        <img src={arrowIcon} onClick={() => cb(1)}></img>
+        <Arrow className="w-8 p-1.5" orientation='left' callback={() => cb(-1)} />
+        <div className="flex text-white">{r}</div>
+        <Arrow className="w-8 p-1.5" orientation='right' callback={() => cb(1)} />
       </>
     );
   };
@@ -156,10 +169,10 @@ function CalendarModal({ dialogRef }: CalendarModalProps) {
 
     return matrix.map((row) => {
       return (
-        <div className="cm-row">
+        <div className="flex flex-row justify-between">
           {row.map((e) => (
             <p
-              className="cm-item"
+              className="text-center p-4 w-[calc(100%/7)] text-gray-600 transition-colors duration-200 border-full"
               onClick={() => {
                 const tDate = new Date(localDate);
                 tDate.setFullYear(e);
@@ -185,10 +198,10 @@ function CalendarModal({ dialogRef }: CalendarModalProps) {
 
     return matrix.map((row) => {
       return (
-        <div className="cm-row">
+        <div className="first:mt-0.5 flex flex-row justify-between">
           {row.map((e) => (
             <p
-              className="cm-item"
+              className="text-center p-1 w-[calc(100%/7)] text-gray-600 transition-colors duration-200 border-full"
               onClick={() => {
                 const tDate = new Date(localDate);
                 tDate.setMonth(e);
@@ -209,10 +222,12 @@ function CalendarModal({ dialogRef }: CalendarModalProps) {
 
     return matrix.map((row) => {
       return (
-        <div className="cm-row">
+        <div className="first:mt-0.5 flex flex-row justify-between">
           {row.map((e) => (
             <p
-              className={'cm-item' + (e > 0 ? '' : ' disabled')}
+              className={
+                'calendar-item ' + (e > 0 ? 'cursor-pointer' : 'opacity-30')
+              }
               onClick={
                 e > 0
                   ? () => {
@@ -235,9 +250,14 @@ function CalendarModal({ dialogRef }: CalendarModalProps) {
 
   return (
     <>
-      <dialog className="calendar-modal" ref={dialogRef}>
-        <div className="cm-header">{renderHeader()}</div>
-        <div className="cm-body">{renderModal()}</div>
+      <dialog
+        className="w-[calc(100%-3rem)] max-w-[650px] p-4 rounded-xl border-1 border-solid border-gray-600 bg-gray-800 overflow-visible m-auto focus:outline-none"
+        ref={dialogRef}
+      >
+        <div className="flex flex-row justify-between border-b-1 border-solid border-gray-600 pb-2">
+          {renderHeader()}
+        </div>
+        <div className="flex flex-col mt-2">{renderModal()}</div>
       </dialog>
     </>
   );

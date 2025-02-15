@@ -4,15 +4,14 @@ import { visualizer } from 'rollup-plugin-visualizer';
 import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
-  plugins: [preact()],
+  plugins: [preact(), tailwindcss()],
   build: {
     rollupOptions: {
       plugins: [
         visualizer({
           gzipSize: true,
           brotliSize: true,
-        }),
-        tailwindcss(),
+        })
       ],
     },
     outDir: 'dist',

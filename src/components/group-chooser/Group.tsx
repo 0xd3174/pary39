@@ -65,9 +65,9 @@ export function GroupChooser() {
 
   return (
     <>
-      <div onClick={() => modalState.open(modalId)} className="group">
-        <p className="group-name">{groupState.group || 'Группа не выбрана'}</p>
-        <p className="group-tip">Нажмите, чтобы выбрать группу</p>
+      <div onClick={() => modalState.open(modalId)} className="p-8 cursor-pointer mt-4 mr-auto ml-auto">
+        <p className="text-center text-white">{groupState.group || 'Группа не выбрана'}</p>
+        <p className="text-center text-gray-400 mt-1">Нажмите, чтобы выбрать группу</p>
       </div>
 
       {isLocalModalOpen && <GroupChooserModal dialogRef={ref} />}

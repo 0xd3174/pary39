@@ -4,12 +4,12 @@ import {
   getScheduleForWeek,
   IClass,
 } from '../../utils/scrape';
-import './classes.css';
 import { useGroupStore } from '../../stores/group';
 import { useClassesStore } from '../../stores/classes';
 import { useDateStore } from '../../stores/date';
 import { dayNumberToString, isDateInCurrentWeek } from '../../utils/date';
 import arrowIcon from '/src/svg/arrow.svg';
+import { Arrow } from '../../shared/arrow/Arrow';
 
 export function Classes() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -107,35 +107,27 @@ export function Classes() {
 
   return (
     <>
-      <div class="classes-container" ref={containerRef}>
-        <div class="cc-header">
-          <img src={arrowIcon} onClick={() => swapClass(-1)}></img>
-          <div className="cc-header-text">
+      <div className="mt-3 pr-4 pl-4 pb-32 w-full" ref={containerRef}>
+        <div className="flex flex-row justify-between pt-4">
+          <Arrow
+            className="w-8 p-1.5"
+            orientation="left"
+            callback={() => swapClass(-1)}
+          />
+          <div className="flex text-2xl text-white">
             {dayNumberToString(dateState.date.getDay())}
           </div>
-          <img src={arrowIcon} onClick={() => swapClass(1)}></img>
+          <Arrow
+            className="w-8 p-1.5"
+            orientation="right"
+            callback={() => swapClass(1)}
+          />
         </div>
-        <div class="cc-body">{renderClasses()}</div>
+        <div className="cc-body">{renderClasses()}</div>
       </div>
     </>
   );
 }
-
-const renderSubgroups = (subjects: IClass['subjects'], subgroup?: number) => {
-  const subgroups = Object.keys(subjects);
-
-  if (subgroup === undefined) return null;
-
-  if (subgroups.length > 1) {
-    return subgroups.map((e) => (
-      <p className={e === subgroup.toString() ? 'active' : ''}>
-        Подгруппа {+e + 1}
-      </p>
-    ));
-  } else {
-    return <p>Общая</p>;
-  }
-};
 
 const Class = ({ props }: { props: IClass }) => {
   const [subgroup, setSubgroup] = useState<number>();
@@ -159,21 +151,40 @@ const Class = ({ props }: { props: IClass }) => {
     return props.subjects[0][prop] || '';
   };
 
+  const renderSubgroups = (subjects: IClass['subjects']) => {
+    const subgroups = Object.keys(subjects);
+
+    if (subgroup === undefined) return null;
+
+    return subgroups.map((e) => (
+      <p
+        className={
+          'pt-1 pb-1 pl-2 pr-2' +
+          (e === subgroup.toString() ? ' bg-cyan-700 rounded-xl' : '')
+        }
+      >
+        Подгруппа {+e + 1}
+      </p>
+    ));
+  };
+
   return (
     <>
-      <div className="class-card">
-        <div className="cs-header-container">
-          <p className="cs-header-title-count">
-            {props.count},{' '}
-            <span className="cs-header-title-time">{props.time}</span>
+      <div className="mt-4 p-4 rounded-xl border-1 border-solid border-gray-600">
+        <div className="flex justify-between">
+          <p className="text-white">
+            {props.count}, <span className="text-gray-400">{props.time}</span>
           </p>
-          <p className="cs-header-type">{defineRow('type')}</p>
+          <p className="text-gray-400">{defineRow('type')}</p>
         </div>
-        <p className="cs-item">{defineRow('item')}</p>
-        <p className="cs-teacher">{defineRow('teacher')}</p>
-        <p className="cs-place">{defineRow('place')}</p>
-        <button onClick={handleClick} className="subgroup">
-          {renderSubgroups(props.subjects, subgroup)}
+        <p className="text-2xl text-white">{defineRow('item')}</p>
+        <p className="text-gray-400">{defineRow('teacher')}</p>
+        <p className="text-gray-400">{defineRow('place')}</p>
+        <button
+          onClick={handleClick}
+          className="p-0 text-gray-200 bg-gray-600 font-semibold flex w-fit mt-1 rounded-xl border-none cursor-pointer"
+        >
+          {renderSubgroups(props.subjects)}
         </button>
       </div>
     </>
