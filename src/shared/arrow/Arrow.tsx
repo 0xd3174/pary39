@@ -1,18 +1,18 @@
 import { ChevronRight } from 'lucide-preact';
+import { BaseHTMLAttributes } from 'preact/compat';
 
-interface ArrowProps {
+interface ArrowProps extends BaseHTMLAttributes<HTMLDivElement> {
   orientation: 'right' | 'left';
-  callback: () => void;
   className: string;
 }
 
-export function Arrow({ className, orientation, callback }: ArrowProps) {
+export function Arrow({ className, orientation, ...rest }: ArrowProps) {
   return (
-    <ChevronRight
-      className={`cursor-pointer text-white transition-colors duration-200 rounded-lg hover:bg-white/10 ${
-        orientation === 'left' ? 'rotate-180' : ''
-      } ${className}`}
-      onClick={callback}
-    />
+    <div
+      className={`cursor-pointer text-white transition-colors duration-200 rounded-lg hover:bg-white/10 ${className}`}
+      {...rest}
+    >
+      <ChevronRight className={orientation === 'left' ? 'rotate-180' : ''} />
+    </div>
   );
 }

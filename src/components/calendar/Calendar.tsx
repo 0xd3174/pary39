@@ -134,13 +134,13 @@ function CalendarModal({ dialogRef }: CalendarModalProps) {
         <Arrow
           className="size-8 p-1.5"
           orientation="left"
-          callback={() => cb(-1)}
+          onClick={() => cb(-1)}
         />
         <div className="flex text-white">{r}</div>
         <Arrow
           className="size-8 p-1.5"
           orientation="right"
-          callback={() => cb(1)}
+          onClick={() => cb(1)}
         />
       </>
     );

@@ -111,7 +111,7 @@ export function Classes() {
           <Arrow
             className="size-9 p-1.5"
             orientation="left"
-            callback={() => swapClass(-1)}
+            onClick={() => swapClass(-1)}
           />
           <div className="flex text-2xl text-white">
             {dayNumberToString(dateState.date.getDay())}
@@ -119,7 +119,7 @@ export function Classes() {
           <Arrow
             className="size-9 p-1.5"
             orientation="right"
-            callback={() => swapClass(1)}
+            onClick={() => swapClass(1)}
           />
         </div>
         <div>{renderClasses()}</div>
