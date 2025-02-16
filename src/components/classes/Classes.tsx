@@ -9,6 +9,7 @@ import { useClassesStore } from '../../stores/classes';
 import { useDateStore } from '../../stores/date';
 import { dayNumberToString, isDateInCurrentWeek } from '../../utils/date';
 import { Arrow } from '../../shared/arrow/Arrow';
+import { LoaderCircle, PartyPopper } from 'lucide-preact';
 
 export function Classes() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -83,14 +84,25 @@ export function Classes() {
 
   const renderClasses = () => {
     if (classesState.classes[dateState.dateString()] === undefined) {
-      return <p className="cc-loading">Loading....</p>;
+      // return <p className="cc-loading">Loading....</p>;
+      return (
+        <div className="mt-8 flex flex-col w-fit p-16 rounded-xl text-white items-center border-1 border-solid border-outline">
+          <p className="text-3xl">Загрузка...</p>
+          <LoaderCircle className="mt-2 animate-spin size-8" />
+        </div>
+      );
     }
 
     if (
       Array.isArray(classesState.classes[dateState.dateString()]) &&
       classesState.classes[dateState.dateString()].length === 0
     ) {
-      return <p className="cc-empty">Пар нет</p>;
+      return (
+        <div className="mt-8 flex flex-col w-fit p-16 rounded-xl text-white items-center border-1 border-solid border-outline">
+          <p className="text-3xl">Пар нет!</p>
+          <PartyPopper className="mt-2 size-32" />
+        </div>
+      );
     }
 
     return classesState.classes[dateState.dateString()].map((e) => (
@@ -122,7 +134,7 @@ export function Classes() {
             onClick={() => swapClass(1)}
           />
         </div>
-        <div>{renderClasses()}</div>
+        <div className="flex flex-col items-center">{renderClasses()}</div>
       </div>
     </>
   );
@@ -198,7 +210,7 @@ const Class = ({ props }: { props: IClass }) => {
 
   return (
     <>
-      <div className="mt-4 p-4 rounded-xl border-1 border-solid border border-outline">
+      <div className="mt-4 p-4 rounded-xl border-1 border-solid border border-outline w-full">
         <div className="mb-2 flex justify-between">
           <p className="text-white">
             {props.count.trim()},{' '}
