@@ -206,13 +206,13 @@ const Class = ({ props }: { props: IClass }) => {
         subject.subgroup !== -1 ? `Подгруппа ${subject.subgroup}` : 'Общая';
 
       return (
-        <p
+        <div
           className={`pt-1 pb-1 pl-2 pr-2 ${
-            e === subgroupStr ? 'bg-outline rounded-xl' : ''
+            e === subgroupStr ? 'bg-outline rounded-[calc(0.75rem-2px)]' : ''
           }`}
         >
           {subgroupText}
-        </p>
+        </div>
       );
     });
   };
@@ -232,7 +232,7 @@ const Class = ({ props }: { props: IClass }) => {
         <p className="mb-2 text-zinc-500">{defineRow('place')}</p>
         <button
           onClick={() => handleClick(props.subjects)}
-          className="p-0 text-gray-200 border-1 border-solid border-outline font-semibold flex w-fit mt-1 rounded-xl cursor-pointer"
+          className="border-1 border-solid border-outline p-0 text-gray-200 font-semibold flex w-fit mt-1 rounded-xl cursor-pointer"
         >
           {renderSubgroups(props.subjects)}
         </button>
