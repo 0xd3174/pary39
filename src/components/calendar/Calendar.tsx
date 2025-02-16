@@ -274,7 +274,7 @@ function CalendarModal({ dialogRef }: CalendarModalProps) {
         className="min-w-[calc(100%-3rem)] lg:min-w-[450px] p-4 rounded-xl border-1 border-solid border-outline bg-[var(--color-bg)] overflow-visible m-auto focus:outline-none animate-[modal_150ms_linear]"
         ref={dialogRef}
       >
-        <div className="flex flex-row justify-between pb-2">
+        <div className="flex flex-row justify-between items-center pb-2">
           {renderHeader()}
         </div>
         <div className="flex flex-col mt-2">{renderModal()}</div>
