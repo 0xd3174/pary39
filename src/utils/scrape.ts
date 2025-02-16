@@ -177,7 +177,7 @@ function extractSchedule(
 
   const year = currentDate.getFullYear();
   const month = currentDate.getMonth() + 1;
-  const day = currentDate.getDate() + 7 - currentDate.getDay();
+  const day = currentDate.getDate() + 7 - (currentDate.getDay() === 0 ? 7 : currentDate.getDay() + 1);
 
   const sundayDate = `${year}-${month < 10 ? 0 : ''}${month}-${
     day < 10 ? 0 : ''
