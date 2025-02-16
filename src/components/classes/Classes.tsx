@@ -220,16 +220,16 @@ const Class = ({ props }: { props: IClass }) => {
   return (
     <>
       <div className="mt-4 p-4 rounded-xl border-1 border-solid border border-outline w-full">
-        <div className="mb-2 flex justify-between">
+        <div className="mb-1 flex justify-between">
           <p className="text-white">
             {props.count.trim()},{' '}
             <span className="text-zinc-500">{props.time}</span>
           </p>
           <p className="text-zinc-500">{defineRow('type')}</p>
         </div>
-        <p className="mb-2 text-2xl text-white">{defineRow('item')}</p>
-        <p className="mb-2 text-zinc-500">{defineRow('teacher')}</p>
-        <p className="mb-3 text-zinc-500">{defineRow('place')}</p>
+        <p className="mb-1 text-2xl text-white">{defineRow('item')}</p>
+        <p className="mb-1 text-zinc-500">{defineRow('teacher')}</p>
+        <p className="mb-2 text-zinc-500">{defineRow('place')}</p>
         <button
           onClick={() => handleClick(props.subjects)}
           className="p-0 text-gray-200 border-1 border-solid border-outline font-semibold flex w-fit mt-1 rounded-xl cursor-pointer"

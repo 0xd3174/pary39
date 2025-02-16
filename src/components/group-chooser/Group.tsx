@@ -71,7 +71,7 @@ export function GroupChooser() {
         <p className="text-center text-white text-lg font-bold">
           {groupState.group || 'Группа не выбрана'}
         </p>
-        <p className="text-center text-zinc-500 mt-1">
+        <p className="text-center text-zinc-500">
           Нажмите, чтобы выбрать группу
         </p>
       </div>
