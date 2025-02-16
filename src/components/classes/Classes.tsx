@@ -196,16 +196,25 @@ const Class = ({ props }: { props: IClass }) => {
 
     if (subgroup === undefined) return null;
 
-    return subgroups.map((e) => (
-      <p
-        className={
-          'pt-1 pb-1 pl-2 pr-2' +
-          (e === subgroup.toString() ? ' bg-outline rounded-xl' : '')
-        }
-      >
-        {subjects[parseInt(e)].subgroup != -1 ? `Подгруппа ${+e + 1}` : 'Общая'}
-      </p>
-    ));
+    const subgroupStr = subgroup.toString();
+
+    return subgroups.map((e) => {
+      const subgroupKey = parseInt(e);
+      const subject = subjects[subgroupKey];
+
+      const subgroupText =
+        subject.subgroup !== -1 ? `Подгруппа ${subject.subgroup}` : 'Общая';
+
+      return (
+        <p
+          className={`pt-1 pb-1 pl-2 pr-2 ${
+            e === subgroupStr ? 'bg-outline rounded-xl' : ''
+          }`}
+        >
+          {subgroupText}
+        </p>
+      );
+    });
   };
 
   return (
