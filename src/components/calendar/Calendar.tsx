@@ -1,11 +1,11 @@
 import { MutableRef, useEffect, useMemo, useRef, useState } from 'preact/hooks';
 import { useDateStore } from '../../stores/date';
 import { useModalStore } from '../../stores/modal';
-import calendarIcon from '/src/svg/calendar.svg';
 import { generateComponentId } from '../../utils/generate-id';
 import { getMonthAsMatrix, monthNumberToString } from '../../utils/date';
 import './calendar.css';
 import { Arrow } from '../../shared/arrow/Arrow';
+import { Calendar as CalendarIcon } from 'lucide-preact';
 
 export function Calendar() {
   const dateState = useDateStore((state) => state);
@@ -33,7 +33,7 @@ export function Calendar() {
         onClick={() => modalState.open(modalId)}
       >
         <p class="text-white font-semibold">{dateState.dateString()}</p>
-        <img className="w-4" src={calendarIcon}></img>
+        <CalendarIcon className="w-4.5 text-white" />
       </div>
 
       <CalendarModal dialogRef={ref} />
@@ -132,13 +132,13 @@ function CalendarModal({ dialogRef }: CalendarModalProps) {
     return (
       <>
         <Arrow
-          className="w-8 p-1.5"
+          className="size-8 p-1.5"
           orientation="left"
           callback={() => cb(-1)}
         />
         <div className="flex text-white">{r}</div>
         <Arrow
-          className="w-8 p-1.5"
+          className="size-8 p-1.5"
           orientation="right"
           callback={() => cb(1)}
         />

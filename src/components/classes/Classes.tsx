@@ -109,7 +109,7 @@ export function Classes() {
       <div className="mt-3 pr-4 pl-4 pb-32 w-full" ref={containerRef}>
         <div className="flex flex-row justify-between pt-4">
           <Arrow
-            className="w-8 p-1.5"
+            className="size-9 p-1.5"
             orientation="left"
             callback={() => swapClass(-1)}
           />
@@ -117,7 +117,7 @@ export function Classes() {
             {dayNumberToString(dateState.date.getDay())}
           </div>
           <Arrow
-            className="w-8 p-1.5"
+            className="size-9 p-1.5"
             orientation="right"
             callback={() => swapClass(1)}
           />

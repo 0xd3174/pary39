@@ -1,4 +1,4 @@
-import arrowIcon from '/src/svg/arrow.svg';
+import { ChevronRight } from 'lucide-preact';
 
 interface ArrowProps {
   orientation: 'right' | 'left';
@@ -8,12 +8,11 @@ interface ArrowProps {
 
 export function Arrow({ className, orientation, callback }: ArrowProps) {
   return (
-    <img
-      className={`cursor-pointer filter-[var(--arrow-filter)] transition-colors duration-200 rounded-full hover:bg-white ${
+    <ChevronRight
+      className={`cursor-pointer text-white transition-colors duration-200 rounded-lg hover:bg-white/10 ${
         orientation === 'left' ? 'rotate-180' : ''
       } ${className}`}
-      src={arrowIcon}
       onClick={callback}
-    ></img>
+    />
   );
 }
