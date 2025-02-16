@@ -122,7 +122,7 @@ export function Classes() {
             callback={() => swapClass(1)}
           />
         </div>
-        <div className="cc-body">{renderClasses()}</div>
+        <div>{renderClasses()}</div>
       </div>
     </>
   );
