@@ -1,10 +1,10 @@
 import { MutableRef, useEffect, useMemo, useRef, useState } from 'preact/hooks';
-import { useDateStore } from '../../stores/date';
-import { useModalStore } from '../../stores/modal';
-import { generateComponentId } from '../../utils/generate-id';
-import { getMonthAsMatrix, monthNumberToString } from '../../utils/date';
+import { useDateStore } from '../../../stores/date';
+import { useModalStore } from '../../../stores/modal';
+import { generateComponentId } from '../../../utils/generate-id';
+import { getMonthAsMatrix, monthNumberToString } from '../../../utils/date';
 import './calendar.css';
-import { Arrow } from '../../shared/arrow/Arrow';
+import { Arrow } from '../../../components/arrow/Arrow';
 import { Calendar as CalendarIcon } from 'lucide-preact';
 
 export function Calendar() {

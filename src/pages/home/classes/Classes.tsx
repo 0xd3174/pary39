@@ -3,12 +3,12 @@ import {
   getScheduleForDay,
   getScheduleForWeek,
   IClass,
-} from '../../utils/scrape';
-import { useGroupStore } from '../../stores/group';
-import { useClassesStore } from '../../stores/classes';
-import { useDateStore } from '../../stores/date';
-import { dayNumberToString, isDateInCurrentWeek } from '../../utils/date';
-import { Arrow } from '../../shared/arrow/Arrow';
+} from '../../../utils/scrape';
+import { useGroupStore } from '../../../stores/group';
+import { useClassesStore } from '../../../stores/classes';
+import { useDateStore } from '../../../stores/date';
+import { dayNumberToString, isDateInCurrentWeek } from '../../../utils/date';
+import { Arrow } from '../../../components/arrow/Arrow';
 import { LoaderCircle, PartyPopper } from 'lucide-preact';
 
 export function Classes() {

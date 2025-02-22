@@ -1,7 +1,7 @@
 import { Route, Switch } from 'wouter-preact';
-import { Home } from './pages/Home';
-import { Settings } from './pages/Settings';
-import { Navbar } from './shared/navbar/Navbar';
+import { Home } from './pages/home/Home.tsx';
+import { Settings } from './pages/settings/Settings.tsx';
+import { Navbar } from './components/navbar/Navbar';
 
 export function App() {
   return (

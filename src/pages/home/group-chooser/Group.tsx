@@ -1,12 +1,12 @@
 import { MutableRef, useEffect, useMemo, useRef, useState } from 'preact/hooks';
-import { useModalStore } from '../../stores/modal';
-import { useGroupChooserStore, useGroupStore } from '../../stores/group';
-import { Dropdown } from '../../shared/dropdown/Dropdown';
-import { generateComponentId } from '../../utils/generate-id';
-import { useDropdownStore } from '../../stores/dropdown';
+import { useModalStore } from '../../../stores/modal';
+import { useGroupChooserStore, useGroupStore } from '../../../stores/group';
+import { Dropdown } from '../../../components/dropdown/Dropdown';
+import { generateComponentId } from '../../../utils/generate-id';
+import { useDropdownStore } from '../../../stores/dropdown';
 import { TargetedEvent } from 'preact/compat';
-import { getGroups } from '../../utils/get-groups';
-import { DropdownSearch } from '../../shared/dropdown/DropdownSearch';
+import { getGroups } from '../../../utils/get-groups';
+import { DropdownSearch } from '../../../components/dropdown/DropdownSearch';
 
 const EDUCATION_LEVELS = [
   'СПО',
