@@ -18,23 +18,10 @@
 }
 
 body {
-  margin: 0;
-
   background-color: var(--color-bg);
   
   font-family: Inter, sans-serif;
   font-weight: 600;
-}
-
-#app {
-  width: 100%;
-  max-width: 650px;
-  height: 100vh;
-  margin: 0 auto;
-  align-items: center;
-
-  display: flex;
-  flex-direction: column;
 }
 
 @keyframes modal {

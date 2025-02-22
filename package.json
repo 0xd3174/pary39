@@ -14,6 +14,7 @@
     "preact": "^10.25.3",
     "rollup-plugin-visualizer": "^5.14.0",
     "tailwindcss": "^4.0.6",
+    "wouter-preact": "^3.6.0",
     "zustand": "^5.0.3"
   },
   "devDependencies": {

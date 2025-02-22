@@ -1,14 +1,18 @@
-import { Calendar } from './components/calendar/Calendar.tsx';
-import { GroupChooser } from './components/group-chooser/Group.tsx';
-import { Classes } from './components/classes/Classes.tsx';
+import { Route, Switch } from 'wouter-preact';
+import { Home } from './pages/Home';
+import { Settings } from './pages/Settings';
+import { Navbar } from './shared/navbar/Navbar';
 
 export function App() {
   return (
     <>
-      <GroupChooser />
-      <Calendar />
-      <Classes />
-      <nav></nav>
+      <div className="container max-w-2xl flex items-center flex-col m-auto h-screen">
+        <Switch>
+          <Route path="/" component={Home} />
+          <Route path="/settings" component={Settings} />
+        </Switch>
+        <Navbar />
+      </div>
     </>
   );
 }
