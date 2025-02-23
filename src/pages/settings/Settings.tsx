@@ -2,7 +2,7 @@ import { useEffect, useState } from 'preact/hooks';
 import { Switch } from '../../components/switch/Switch';
 
 export function Settings() {
-  const [theme, setTheme] = useState<boolean>(false);
+  const [theme, setTheme] = useState<boolean>(true);
   const [subgroup, setSubgroup] = useState<boolean>(false);
 
   useEffect(() => {
@@ -14,9 +14,7 @@ export function Settings() {
 
     document.documentElement.classList.toggle(
       'dark',
-      localStorage.theme === 'dark' ||
-        (!('theme' in localStorage) &&
-          window.matchMedia('(prefers-color-scheme: dark)').matches)
+      localStorage.theme === 'dark'
     );
   }, [theme]);
 
