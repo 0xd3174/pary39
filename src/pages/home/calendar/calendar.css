@@ -1,10 +1,12 @@
+@reference "./../../../index.css";
+
 .calendar-day {
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 1rem;
   border-radius: 8px;
-  color: var(--color-white);
+  @apply text-black dark:text-white;
   transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -14,7 +16,7 @@
   justify-content: center;
   padding: 1rem;
   border-radius: 8px;
-  color: var(--color-white);
+  @apply text-black dark:text-white;
 }
 
 .calendar-day, .calendar-day-header {
@@ -37,14 +39,14 @@
   width: 6rem;
   height: 3rem;
   border-radius: 8px;
-  color: var(--color-white);
+  @apply text-white dark:text-black;
   transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .calendar-item:hover {
-  background-color: #27272a80;
+  @apply bg-outline dark:bg-outline;
 }
 
 .calendar-day:hover {
-  background-color: #27272a80;
+  @apply bg-outline/20 dark:bg-outline;
 }

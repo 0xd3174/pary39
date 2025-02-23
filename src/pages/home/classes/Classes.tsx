@@ -86,7 +86,7 @@ export function Classes() {
     if (classesState.classes[dateState.dateString()] === undefined) {
       // return <p className="cc-loading">Loading....</p>;
       return (
-        <div className="mt-8 flex flex-col w-fit p-16 rounded-xl text-white items-center border-1 border-solid border-outline">
+        <div className="mt-6 flex flex-col w-fit p-16 rounded-xl text-black dark:text-white items-center border-1 border-solid border-outline">
           <p className="text-3xl">Загрузка...</p>
           <LoaderCircle className="mt-2 animate-spin size-8" />
         </div>
@@ -98,7 +98,7 @@ export function Classes() {
       classesState.classes[dateState.dateString()].length === 0
     ) {
       return (
-        <div className="mt-8 flex flex-col w-fit p-16 rounded-xl text-white items-center border-1 border-solid border-outline">
+        <div className="mt-6 flex flex-col w-fit p-16 rounded-xl text-black dark:text-white items-center border-1 border-solid border-outline">
           <p className="text-3xl">Пар нет!</p>
           <PartyPopper className="mt-2 size-32" />
         </div>
@@ -118,14 +118,14 @@ export function Classes() {
 
   return (
     <>
-      <div className="mt-3 pr-4 pl-4 pb-32 w-full" ref={containerRef}>
-        <div className="flex flex-row justify-between pt-4">
+      <div className="pr-4 pl-4 pb-32 w-full" ref={containerRef}>
+        <div className="flex flex-row justify-between">
           <Arrow
             className="size-9 p-1.5"
             orientation="left"
             onClick={() => swapClass(-1)}
           />
-          <div className="flex text-2xl text-white">
+          <div className="flex text-2xl text-black dark:text-white">
             {dayNumberToString(dateState.date.getDay())}
           </div>
           <Arrow
@@ -221,18 +221,18 @@ const Class = ({ props }: { props: IClass }) => {
     <>
       <div className="mt-4 p-4 rounded-xl border-1 border-solid border border-outline w-full">
         <div className="mb-1 flex justify-between">
-          <p className="text-white">
+          <p className="text-black dark:text-white">
             {props.count.trim()},{' '}
             <span className="text-zinc-500">{props.time}</span>
           </p>
           <p className="text-zinc-500">{defineRow('type')}</p>
         </div>
-        <p className="mb-1 text-2xl text-white">{defineRow('item')}</p>
+        <p className="mb-1 text-2xl text-black dark:text-white">{defineRow('item')}</p>
         <p className="mb-1 text-zinc-500">{defineRow('teacher')}</p>
         <p className="mb-2 text-zinc-500">{defineRow('place')}</p>
         <button
           onClick={() => handleClick(props.subjects)}
-          className="border-1 border-solid border-outline p-0 text-gray-200 font-semibold flex w-fit mt-1 rounded-xl cursor-pointer"
+          className="border-1 border-solid border-outline p-0 text-zinc-500 dark:text-gray-200 font-semibold flex w-fit mt-1 rounded-xl cursor-pointer"
         >
           {renderSubgroups(props.subjects)}
         </button>

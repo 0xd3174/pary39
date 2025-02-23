@@ -6,20 +6,21 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --arrow-filter: invert(100%) sepia(3%) saturate(731%) hue-rotate(175deg) brightness(85%) contrast(81%);
-
-  --color-bg: #09090b;
-}
+@custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
   --color-outline: #27272a;
   --color-white: #fafafa;
+  --color-black: #09090b;
 }
 
-body {
-  background-color: var(--color-bg);
-  
+:root {
+  --arrow-dark-filter: invert(100%) sepia(3%) saturate(731%) hue-rotate(175deg) brightness(85%) contrast(81%);
+}
+
+body {  
+  @apply bg-white dark:bg-black;
+
   font-family: Inter, sans-serif;
   font-weight: 600;
 }

@@ -47,7 +47,7 @@ export function Dropdown({
       return (
         <ul
           ref={listRef}
-          className={`absolute bg-[var(--color-bg)] border-solid border-outline rounded-md overflow-auto w-[calc(100%-3rem)] ${
+          className={`absolute bg-black darl:bg-white border-solid border-outline rounded-md overflow-auto w-[calc(100%-3rem)] ${
             isOpen ? 'border-1 max-h-32 z-50' : 'border-0 max-h-0 z-0'
           }`}
         >
@@ -59,7 +59,7 @@ export function Dropdown({
     return (
       <ul
         ref={listRef}
-        className={`absolute bg-[var(--color-bg)] border-solid border-outline rounded-md overflow-auto w-[calc(100%-3rem)] ${
+        className={`absolute bg-black darl:bg-white border-solid border-outline rounded-md overflow-auto w-[calc(100%-3rem)] ${
           isOpen ? 'border-1 max-h-32 z-50' : 'border-0 max-h-0 z-0'
         }`}
       >
@@ -83,7 +83,7 @@ export function Dropdown({
   return (
     <div className="clear-both">
       <p
-        className={`${className} mb-px pt-2 pb-2 pl-3 pr-3 border-1 border-solid border-outline rounded-md cursor-pointer transition-colors hover:bg-outline text-white`}
+        className={`${className} mb-px pt-2 pb-2 pl-3 pr-3 border-1 border-solid border-outline rounded-md cursor-pointer transition-colors hover:bg-outline/20 dark:hover:bg-outline text-black dark:text-white`}
         onClick={toggleDropdown}
       >
         {selectedTitle || title}

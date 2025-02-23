@@ -29,11 +29,11 @@ export function Calendar() {
   return (
     <>
       <div
-        class="calendar mt-1 w-[75%] max-w-[330px] p-4 border-2 border-solid border-outline rounded-xl hover:bg-outline flex justify-between font-normal"
+        class="calendar w-[75%] max-w-[330px] p-4 border-2 border-solid border-outline rounded-xl hover:bg-outline/20 dark:hover:bg-outline flex justify-between font-normal cursor-pointer"
         onClick={() => modalState.open(modalId)}
       >
-        <p class="text-white font-semibold">{dateState.dateString()}</p>
-        <CalendarIcon className="w-4.5 text-white" />
+        <p class="text-black dark:text-white font-semibold">{dateState.dateString()}</p>
+        <CalendarIcon className="w-4.5 text-black dark:text-white" />
       </div>
 
       <CalendarModal dialogRef={ref} />
@@ -136,7 +136,7 @@ function CalendarModal({ dialogRef }: CalendarModalProps) {
           orientation="left"
           onClick={() => cb(-1)}
         />
-        <div className="flex text-white">{r}</div>
+        <div className="flex text-black dark:text-white">{r}</div>
         <Arrow
           className="size-8 p-1.5"
           orientation="right"
@@ -271,7 +271,7 @@ function CalendarModal({ dialogRef }: CalendarModalProps) {
   return (
     <>
       <dialog
-        className="min-w-[calc(100%-3rem)] lg:min-w-[450px] p-4 rounded-xl border-1 border-solid border-outline bg-[var(--color-bg)] overflow-visible m-auto focus:outline-none animate-[modal_150ms_linear]"
+        className="min-w-[calc(100%-3rem)] lg:min-w-[450px] p-4 rounded-xl border-1 border-solid border-outline bg-white dark:bg-black overflow-visible m-auto focus:outline-none animate-[modal_150ms_linear]"
         ref={dialogRef}
       >
         <div className="flex flex-row justify-between items-center pb-2">

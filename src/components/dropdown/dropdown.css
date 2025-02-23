@@ -1,5 +1,8 @@
+@reference "./../../index.css";
+
 .dropdown-item {
-  color: var(--color-white);
+  @apply text-black dark:text-white;
+  
   box-sizing: border-box;
   padding: 0.5rem;
   cursor: pointer;

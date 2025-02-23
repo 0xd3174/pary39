@@ -66,9 +66,9 @@ export function GroupChooser() {
     <>
       <div
         onClick={() => modalState.open(modalId)}
-        className="p-4 cursor-pointer mt-4 mr-auto ml-auto"
+        className="cursor-pointer mr-auto ml-auto"
       >
-        <p className="text-center text-white text-lg font-bold">
+        <p className="text-center text-dark dark:text-white text-lg font-bold">
           {groupState.group || 'Группа не выбрана'}
         </p>
         <p className="text-center text-zinc-500">
@@ -149,11 +149,11 @@ function GroupChooserModal({ dialogRef }: GroupChooserModalProps) {
 
   return (
     <dialog
-      className="w-[calc(100%-3rem)] max-w-[550px] p-6 rounded-xl border-1 border-solid bg-[var(--color-bg)] border-outline overflow-visible m-auto focus:outline animate-[modal_150ms_linear]"
+      className="w-[calc(100%-3rem)] max-w-[550px] p-6 rounded-xl border-1 border-solid bg-white dark:bg-black border-outline overflow-visible m-auto focus:outline animate-[modal_150ms_linear]"
       ref={dialogRef}
       onClick={handleClickOutsideDropdowns}
     >
-      <h1 className="text-white text-2xl mb-4">Выбор группы</h1>
+      <h1 className="text-dark dark:text-white text-2xl mb-2">Выбор группы</h1>
 
       <Dropdown
         title="Уровень образования"

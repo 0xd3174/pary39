@@ -52,7 +52,7 @@ export function DropdownSearch({
       return (
         <ul
           ref={listRef}
-          className={`absolute bg-[var(--color-bg)] border-solid border-outline rounded-md overflow-auto w-[calc(100%-3rem)] ${
+          className={`absolute bg-white dark:bg-black border-solid border-outline rounded-md overflow-auto w-[calc(100%-3rem)] ${
             isOpen ? 'border-1 max-h-32 z-50' : 'border-0 max-h-0 z-0'
           }`}
         >
@@ -64,7 +64,7 @@ export function DropdownSearch({
     return (
       <ul
         ref={listRef}
-        className={`absolute bg-[var(--color-bg)] border-solid border-outline rounded-md overflow-auto w-[calc(100%-3rem)] ${
+        className={`absolute bg-white dark:bg-black border-solid border-outline rounded-md overflow-auto w-[calc(100%-3rem)] ${
           isOpen ? 'border-1 max-h-32 z-50' : 'border-0 max-h-0 z-0'
         }`}
       >
@@ -97,14 +97,14 @@ export function DropdownSearch({
       {isOpen && !disabled ? (
         <input
           ref={inputRef}
-          className={`${className} mb-px pt-2 pb-2 pl-3 pr-3 border-1 border-solid border-outline rounded-md cursor-pointer transition-colors hover:bg-outline text-white block w-full focus:outline-none`}
+          className={`${className} mb-px pt-2 pb-2 pl-3 pr-3 border-1 border-solid border-outline rounded-md cursor-pointer transition-colors hover:bg-outline/20 dark:hover:bg-outline text-black dark:text-white block w-full focus:outline-none`}
           onInput={(i) => setSearchBar(i.currentTarget.value.toLowerCase())}
           onClick={toggleDropdown}
           type="text"
         />
       ) : (
         <p
-          className={`${className} mb-px pt-2 pb-2 pl-3 pr-3 border-1 border-solid border-outline rounded-md cursor-pointer transition-colors hover:bg-outline text-white`}
+          className={`${className} mb-px pt-2 pb-2 pl-3 pr-3 border-1 border-solid border-outline rounded-md cursor-pointer transition-colors hover:bg-outline/20 dark:hover:bg-outline text-black dark:text-white`}
           onClick={toggleDropdown}
         >
           {selectedTitle || title}
