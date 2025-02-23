@@ -9,7 +9,7 @@ export function App() {
       <div className="container max-w-2xl flex items-center flex-col space-y-4 m-auto h-screen p-4">
         <Switch>
           <Route path="/" component={Home} />
-          <Route path="/settings" component={Settings} />
+          <Route path="/настройки" component={Settings} />
         </Switch>
         <Navbar />
       </div>
